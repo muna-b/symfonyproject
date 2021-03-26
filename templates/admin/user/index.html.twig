@@ -1,0 +1,47 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    
+    <div class="container">
+
+     {% for messages in app.flashes %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    <h1 class="col-md-6 offset-4">liste des Utilisateurs</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Annonce n°</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for utilisateur in users %}
+        <tr>
+            <td>{{ utilisateur.id }}</td>
+            <td>{{ utilisateur.username }}</td>
+            <td>{{ utilisateur.email }}</td>
+            <td>{{ utilisateur.lastname }} €</td>
+            <td>
+                <a href=" {{ path('edit_user', {'id':utilisateur.id }) }} " class=" btn btn-info">éditer</a>
+                <a href="{{ path('delete_user', {'id':utilisateur.id }) }}" class="btn btn-danger">delete</a>
+                <a href="{{ path('auteur', {'id':utilisateur.id }) }}" class="btn btn-success">Voir l'utilisateur</a>
+            </td>
+        </tr>
+        
+    {% endfor %}  
+    </tbody>
+    </table>
+</div>
+
+{% endblock %}

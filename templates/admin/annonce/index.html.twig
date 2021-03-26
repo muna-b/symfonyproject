@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    
+    <div class="container">
+
+     {% for messages in app.flashes %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    <h1 class="col-md-6 offset-4">liste des annonces</h1>
+    <a href=" {{ path('annonces_new') }} " class=" btn btn-warning">Ajouter une annonce</a>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Annonce n°</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for annonce in annonces %}
+        <tr>
+            <td>{{ annonce.id }}</td>
+            <td>{{ annonce.titre }}</td>
+            <td>{{ annonce.auteur.username }}</td>
+            <td>{{ annonce.prix }} €</td>
+            <td>
+                <a href=" {{ path('edit_annonce', {'id':annonce.id }) }} " class=" btn btn-info">éditer</a>
+                <a href="{{ path('delete_annonce', {'id':annonce.id }) }}" class="btn btn-danger">delete</a>
+            </td>
+        </tr>
+        
+    {% endfor %}  
+    </tbody>
+    </table>
+</div>
+
+{% endblock %}

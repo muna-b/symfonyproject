@@ -1,0 +1,24 @@
+body{
+    background-color: 	#F5F5F5;
+}
+h1{
+    text-align: center;
+    color: 	#484848;
+}
+
+.active{
+    font-size: 35px;
+    color: red;
+}
+
+#delete{
+    position: absolute;
+    right: 6px;
+    top: -1px;
+}
+
+#mon-compte{
+    position: absolute;
+    right: 20px;
+}
+

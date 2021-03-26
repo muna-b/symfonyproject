@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+{% form_theme form _self %}
+{% block body %}
+    <div class="container">
+        <h1>Créer une annonce</h1>
+        <div class="col-6"></div>
+            
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+                <button class="btn btn-warning btn-md my-4" type="submit">
+                <i class="fas fa-check"></i>
+                Valider
+                </button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+{# Ce block permet de #}
+{% block _annonce_images_entry_row %}
+    {# widget correspond a l'input #}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _annonce_images_widget %} 
+{# annonce_images dois correspondre a l'id dans l'inspecteur (comme il a été ecris dans l'entity) #}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-info" id="add_image">+</button>
+{% endblock %}
+
+{# Ce block correspond a l'insertion de la deuxieme table dans le formulaire #}
+{% block _annonce_images_entry_widget %}
+       <div class="form-group">
+           {{ form_widget(form.url) }}<br>
+           {{ form_widget(form.legende) }}
+       </div>
+
+{% endblock %}

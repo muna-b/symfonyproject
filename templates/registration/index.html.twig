@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+<div class="container">
+ {% for messages in app.flashes %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+{% endfor %}
+        <h1>Se connecter</h1>
+        <div class="col-6"></div>
+            
+            {{ form_start(connexion) }}
+            {{ form_widget(connexion) }}
+                <button class="btn btn-warning btn-md my-4" type="submit">
+                <i class="fas fa-check"></i>
+                Valider
+                </button>
+            {{ form_end(connexion) }}
+        </div>
+    </div>
+
+{% endblock %}

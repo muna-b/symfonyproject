@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        {% block stylesheets %}
+          <link rel="stylesheet" href="/css/bootstrap.min.css">
+          <link rel="stylesheet" href="/css/front.css">
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+        {% endblock %}
+
+    </head>
+
+<body>
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path('home') }}">AppImmo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item  {% if app.request.attributes.get('_route') == 'new_annonce' %} active {% endif  %}
+  ">
+            <a class="nav-link" href=" {{ path('home') }} "> Home </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href=" {{ path('annonces') }} "> | </a>
+          </li>
+
+          <li class="nav-item {% if app.request.attributes.get('_route') == 'new_annonce' %} active {% endif  %}
+  ">
+            <a class="nav-link" href=" {{ path('annonces') }} ">Annonces</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href=" {{ path('home') }} "> | </a>
+          </li>
+
+          <li class="nav-item  {% if app.request.attributes.get('_route') == 'new_annonce' %} active {% endif  %}
+  ">
+            <a class="nav-link" href=" {{ path('annonces_new') }} "> Ajouter une annonce </a>
+          </li>
+
+        <ul class="navbar-nav" id="mon-compte">
+          {% if app.user %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user"> {{ app.user.username|capitalize }}  {{ app.user.lastname }}</i>
+              </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li class="nav-item">
+                  <a class="dropdown-item" href=" {{ path('auteur', {'id':app.user.id}) }} ">Mon compte</a>
+                  <a class="dropdown-item" href=" {{ path('logout') }} ">Se deconnecter</a>
+                  </li>
+                </ul>
+            </li>
+            
+          {% else %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Compte <i class="fas fa-user"></i></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li class="nav-item">
+                  <a class="dropdown-item" href=" {{ path('registration') }} ">Créer un compte</a>
+                </li >
+                <li class="nav-item">
+                  <a class="dropdown-item" href=" {{ path('login') }} ">Se connecter</a>
+                </li>
+              </ul>
+            </li>
+          {% endif %}
+        </ul>
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+        </ul>
+      </div>
+  </div>
+</nav>
+
+
+{% dump(app.request.attributes) %}
+<br>
+{% endblock %}
+{% block body %}{% endblock %}
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script>
+        $(document).ready(function (){
+          $("#add_image").click(function (){
+            //alert('ok')
+            const index =$('#annonce_image div.form-group').length;
+            //alert(index)
+            const template = $('#annonce_images').data('prototype').replace(/_name_/g,index);
+          $('#annonce_images').append(template);
+          })
+          $("#delete").click(function(){
+            $("#alert").hide();
+          })
+        })
+</script>
+</body>
+</html>

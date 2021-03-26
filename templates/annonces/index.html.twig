@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnnoncesController!{% endblock %}
+
+{% block body %}
+<hr>
+<div class="container">
+
+{% for messages in app.flashes %}
+    {% for message in messages %}
+    <div class="row">
+        <div class="alert alert-success col-md-6 offset-3" role="alert">
+            {{ message }}
+        </div>
+    </div>    
+    {% endfor %}
+{% endfor %}
+    <h1>Nos annonces</h1>
+    
+    <div class="row">
+        {% for annonce in annonces %}
+        
+            <div class="col-4 my-2">
+                <div class="card" style="width:18rem;">
+                    <img src=" {{ annonce.coverImage }} " class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ annonce.titre }} </h5>
+                        <p class="card-text">
+                        {{ annonce.description }}
+                        </p>
+                        <p class="card-text">
+                        <small class="text-muted">Nombre de chambre : {{ annonce.chambre }}</small><br>
+                        <small class="text-muted">Prix : {{ annonce.prix }} €</small>
+                        <br>
+                        <a href="{{ path('annonces_show',{'id':annonce.id }) }}" class="btn btn-light">voir plus</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}

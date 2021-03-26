@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/admin.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+            
+        {% endblock %}
+    </head>
+    <body>
+    
+    {# Side barre #}
+        <div class="sidenav">
+
+            <a href="#about">Annonces</a>
+            <a href="{{ path('admin_user') }}">Utilisateurs</a>
+
+        </div>
+
+        {% block body %}Contenue twig{% endblock %}
+
+        <script src="/js/jquery.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script>
+        </script>
+    </body>
+</html>

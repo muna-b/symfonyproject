@@ -1,0 +1,53 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: grey;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f1f1f1;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: whitesmoke;
+  }
+  
+  .main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+
+  .btn-warning{
+    background-color: gray !important;
+    border: black !important;
+  }
+
+  .btn-danger{
+    background-color: rgb(63, 1, 1) !important;
+    border: rgb(63, 1, 1) !important;
+  }
+
+  .btn-info{
+    background-color: lightsteelblue !important;
+    border: lightsteelblue !important;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
